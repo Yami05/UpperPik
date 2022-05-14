@@ -11,22 +11,32 @@ public class CharacterMovement : MonoBehaviour
     Rigidbody rb;
     private float rotation = 0;
     float limits;
+    bool start;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
+        animator.SetBool("Idle", true);
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        if (start==true)
+        {
+            transform.Translate(0, 0, 1*Time.deltaTime*charactherSpeed);
+            //Vector3 forward = new Vector3(0, 0, 1 * Time.deltaTime * charactherSpeed); it is not working with the mouse click
+            
+        }
         Movement();
         SwipeManager();
+       
     }
 
     private void SwipeManager()
     {
-        rotation = Mathf.Clamp(rotation, -25, 25);
+        rotation = Mathf.Clamp(rotation, -30, 30);
         var rot = transform.localEulerAngles;
         rot.y = rotation;
         transform.localEulerAngles = rot;
@@ -61,10 +71,16 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+  
     private void Movement()
     {
-        Vector3 forward = new Vector3(0, 0, 1 * Time.deltaTime * charactherSpeed);
+        if (Input.GetMouseButton(0))
+        {
+            animator.SetBool("isMoving", true);
+            start = true;
 
-        rb.MovePosition(transform.position + transform.TransformDirection(forward));
+            
+        }
+       
     }
 }
