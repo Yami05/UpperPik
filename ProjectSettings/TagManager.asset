@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - fuel
+  - stack
+  - Border
   layers:
   - Default
   - TransparentFX

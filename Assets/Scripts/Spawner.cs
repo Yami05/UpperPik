@@ -19,8 +19,8 @@ public class Spawner : MonoBehaviour
         GameObject f = Pool.singleton.Get("fuel");
         if (f !=null)
         {
-            
-                f.transform.position = this.transform.position + new Vector3(Random.Range(-5,5) ,0, Random.Range(0,40));
+
+            f.transform.position = this.transform.position;
                 f.SetActive(true);
 
 
