@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject fuel;
-
+    public GameObject spawn;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -20,10 +20,11 @@ public class Spawner : MonoBehaviour
         if (f !=null)
         {
             
-                f.transform.position = this.transform.position + new Vector3(0 ,Random.Range(0,0.4f), 0);
+                f.transform.position = this.transform.position + new Vector3(Random.Range(-5,5) ,0, Random.Range(0,40));
                 f.SetActive(true);
 
 
         }
+      
     }
 }
