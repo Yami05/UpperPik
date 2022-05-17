@@ -5,26 +5,25 @@ using UnityEngine;
 public class Detector : MonoBehaviour
 {
     Stack stack;
-     public int width;
-    public List<GameObject> wing = new List<GameObject>();
+    private int[] smallOnes = { 1, 3, 5, 6, 8, 9, };
+    
     private void Start()
     {
+        
         stack = gameObject.GetComponent<Stack>();
-        for (int i = 0; i < width; i++)
-        {
-            Vector3 pos = new Vector3(i, 0, 0);
-        }
+       
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag=="Border" && stack._fuels !=null )
         {
-            foreach (GameObject fuel in stack._fuels.ToArray())
+            for (int i = 0; i < stack._fuels.Count; i++)
             {
-                wing.Add(fuel);
-                fuel.transform.localPosition = new Vector3(0, wing[wing.Count - 1].transform.localPosition.y + 0.01f, -0.5f);
+                stack._fuels[0].gameObject.transform.localPosition = new Vector3(2, 0, 0);
+                stack._fuels[i].gameObject.transform.localPosition = new Vector3(stack._fuels[0].transform.localPosition.x - i*0.1f, 1, -0.5f);
+                stack._fuels[i].gameObject.transform.localScale = new Vector3(0.3f,0.5f , 0.2f);
+                //stack._fuels[smallOnes[smallOnes.Length.]].gameObject.transform.localScale = new Vector3(0, 0, 0);
             }
-
            
         }
     }

@@ -8,6 +8,7 @@ public class Stack : MonoBehaviour
     [SerializeField] private TMP_Text _fuelCountText = null;
 
     public List<GameObject> _fuels = new List<GameObject>();
+    
 
 
     
@@ -24,17 +25,29 @@ public class Stack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("fuel"))
+        if (other.gameObject.CompareTag("fuel") && _fuels.Count<=20)
         {
             
             other.gameObject.transform.SetParent(transform);
            
-            other.gameObject.transform.localPosition = new Vector3(0, _fuels[_fuels.Count - 1].transform.localPosition.y+0.01f, -0.5f);
-            other.gameObject.GetComponent<Transform>().localScale = new Vector3(0.05f, 0.05f, 0.05f);
-
+            other.gameObject.transform.localPosition = new Vector3(0.15f, _fuels[_fuels.Count - 1].transform.localPosition.y+0.01f, -0.5f);
+            other.gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            other.gameObject.GetComponent<BoxCollider>().enabled = false;
             _fuels.Add(other.gameObject);
-         
+           
+
         }
-       
+
+        else if (other.gameObject.CompareTag("fuel") && _fuels.Count >= 20)
+        {
+            other.gameObject.transform.SetParent(transform);
+
+            other.gameObject.transform.localPosition = new Vector3(-0.15f, _fuels[_fuels.Count - 1].transform.localPosition.y - 0.01f, -0.5f);
+            other.gameObject.GetComponent<Transform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            _fuels.Add(other.gameObject);
+            other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
+
+
     }
 }

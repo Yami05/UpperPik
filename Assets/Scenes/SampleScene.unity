@@ -902,11 +902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3702096469122414152, guid: 7c6dfd2e817498642ad2d715f6a12d6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.025
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 3702096469122414152, guid: 7c6dfd2e817498642ad2d715f6a12d6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.061
+      value: 1.158
       objectReference: {fileID: 0}
     - target: {fileID: 3702096469122414152, guid: 7c6dfd2e817498642ad2d715f6a12d6a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1004,7 +1004,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.67128026, y: 1}
+    m_SensorSize: {x: 1.1107266, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1129,8 +1129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a757377ad1a54c9d9ebff33599225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0
-  wing: []
 --- !u!1 &2030464203 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7401282940090582869, guid: 7c6dfd2e817498642ad2d715f6a12d6a, type: 3}
