@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
     private float rotation = 0;
     float limits;
     bool start;
+    
 
     private void Start()
     {
