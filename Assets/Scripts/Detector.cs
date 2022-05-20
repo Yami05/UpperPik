@@ -16,26 +16,29 @@ public class Detector : MonoBehaviour
         stack = gameObject.GetComponent<Stack>();
         rb = gameObject.GetComponent<Rigidbody>();
     }
+
+
+    private void Update()
+    {
+
+        if (stack._fuels.Count <= 2)
+        {
+            rb.useGravity = true;
+            animator.SetBool("Fly", false);
+
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag=="Border" && stack._fuels !=null )
         {
+            rb.useGravity = false;
             animator.SetBool("Fly", true);
             WingPosition();
 
             StartCoroutine(UseFuel());
 
-            if (stack._fuels.Count <= 2)
-            {
-                rb.useGravity = true;
-                animator.SetBool("Fly", false);
-
-            }
-            else
-            {
-                rb.useGravity = false;
-            }
-
+         
             
 
         }
@@ -56,17 +59,15 @@ public class Detector : MonoBehaviour
     }
     IEnumerator UseFuel()
     {
-        for (int i = stack._fuels.Count-1; i>=1; i--)
+        for (int i = stack._fuels.Count - 1; i >= 1; i-- )
         {
-            Destroy(stack._fuels[i].gameObject, 0.5f);
+            Destroy(stack._fuels[i].gameObject, 0.3f);
             stack._fuels.RemoveAt(i);
-            
-            yield return new WaitForSeconds(0.5f);
+
+            yield return new WaitForSeconds(0.3f);
 
 
         }
-
-
-
+     
     }
 }
