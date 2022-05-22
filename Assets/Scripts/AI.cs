@@ -4,64 +4,57 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AI : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public Transform fuel;
+    public float lookRadius = 10f;
+    Transform target;
+    NavMeshAgent agent;
 
-    public LayerMask WhatIsGround, WhatIsFuel;
+    Animator animator;
+    public GameObject bot;
+    Stack stack;
 
-
-    public Vector3 runPoint;
-    bool runPointSet;
-    public float runPointRange;
-
-    public float sightRange;
-    public bool fuelInSightRange;
-
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        fuel = GameObject.FindGameObjectWithTag("fuel").transform;
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        stack = bot.GetComponent<Stack>();
+        animator.SetBool("isMoving", true);
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        
-        fuelInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsFuel);
-        if (!fuelInSightRange)
+        target = GameObject.FindGameObjectWithTag("fuel").transform;
+        float distance = Vector3.Distance(target.position, transform.position);
+
+        if (distance <= lookRadius)
         {
-            Running();
+
+            agent.SetDestination(target.position);
+
         }
-    }
-    private void Running()
-    {
+        if (distance > lookRadius)
+        {
+            agent.SetDestination(new Vector3(0, 0, 142));
+        }
+
+
+
        
-        if (!runPointSet)
-        {
-            RunThrough();
 
-        }
-        if (runPointSet)
-        {
-            agent.SetDestination(runPoint);
 
-            Vector3 distanceToFinishPoint = transform.position - runPoint;
-            if (distanceToFinishPoint.magnitude<1f)
-            {
-                runPointSet = false;
-            }
-        }
 
     }
-    private void RunThrough()
+    private void OnDrawGizmosSelected()
     {
-        runPoint = new Vector3(0, 0, 100 );
-        runPointSet = true;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
-
-    private void RunToFuel()
-    {
-        agent.SetDestination(fuel.position);
-        transform.LookAt(fuel);
-    }
-
 }
+
+      
+
+
+    
+
+

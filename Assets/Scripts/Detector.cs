@@ -25,7 +25,7 @@ public class Detector : MonoBehaviour
         {
             rb.useGravity = true;
             animator.SetBool("Fly", false);
-
+            rb.isKinematic = false;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -37,7 +37,7 @@ public class Detector : MonoBehaviour
             WingPosition();
 
             StartCoroutine(UseFuel());
-
+          
          
             
 
@@ -61,13 +61,15 @@ public class Detector : MonoBehaviour
     {
         for (int i = stack._fuels.Count - 1; i >= 1; i-- )
         {
+
+         
             Destroy(stack._fuels[i].gameObject, 0.3f);
             stack._fuels.RemoveAt(i);
-
             yield return new WaitForSeconds(0.3f);
 
-
         }
-     
+      
+       
+
     }
 }

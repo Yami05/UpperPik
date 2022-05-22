@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3288911404304371078}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fuels
   m_TagString: Untagged
   m_Icon: {fileID: 0}

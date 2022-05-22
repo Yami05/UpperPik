@@ -11,15 +11,16 @@ public class CharacterMovement : MonoBehaviour
     Rigidbody rb;
     private float rotation = 0;
     float limits;
-    bool start;
-    
-
+  public  bool start;
+    public GameObject bot;
+    AI ai;
     private void Start()
     {
+        ai = bot.GetComponent<AI>();
         animator = GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
         animator.SetBool("Idle", true);
-
+        ai.enabled = false;
     }
 
     private void FixedUpdate()
@@ -73,14 +74,14 @@ public class CharacterMovement : MonoBehaviour
     }
 
   
-    private void Movement()
+    public void Movement()
     {
         if (Input.GetMouseButton(0))
         {
             animator.SetBool("isMoving", true);
             start = true;
 
-            
+            ai.enabled = true;
         }
        
     }
