@@ -4,27 +4,37 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject spawn;
-    
-    
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject Fuel;
+
+    private void Start()
     {
-       
+        Instantiate(Fuel, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameObject f = Pool.singleton.Get("fuel");
-        if (f !=null)
+        
+    }
+
+
+     IEnumerator SpawnIt()
+    {
+       
+     ;
+
+        yield return new WaitForSeconds(2f);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag=="Player")
         {
-
-            f.transform.position = this.transform.position;
-                f.SetActive(true);
-
-
+            Instantiate(Fuel, transform.position, Quaternion.identity);
         }
-      
+            
+        
+
+
+
     }
 }

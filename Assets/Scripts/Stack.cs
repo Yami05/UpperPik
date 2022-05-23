@@ -30,7 +30,7 @@ public class Stack : MonoBehaviour
           //  StartCoroutine(FuelSpawn());
             
             other.gameObject.transform.SetParent(transform);
-            other.gameObject.tag = "Player";
+           // other.gameObject.tag = "Untagged";
             other.gameObject.transform.localPosition = new Vector3(0.15f, _fuels[_fuels.Count - 1].transform.localPosition.y+0.01f, -0.5f);
             other.gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             other.gameObject.GetComponent<BoxCollider>().enabled = false;

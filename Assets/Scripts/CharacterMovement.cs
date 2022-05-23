@@ -25,15 +25,21 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+       
+       
         if (start==true)
         {
             transform.Translate(0, 0, 1*Time.deltaTime*charactherSpeed);
-            //Vector3 forward = new Vector3(0, 0, 1 * Time.deltaTime * charactherSpeed); it is not working with the mouse click
+           
             
         }
-        Movement();
-        SwipeManager();
+        
        
+    }
+    private void Update()
+    {
+        SwipeManager();
+        Movement();
     }
 
     private void SwipeManager()

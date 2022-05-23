@@ -18,14 +18,14 @@ public class Detector : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
 
         if (stack._fuels.Count <= 2)
         {
             rb.useGravity = true;
             animator.SetBool("Fly", false);
-            rb.isKinematic = false;
+           
         }
     }
     private void OnTriggerEnter(Collider other)
