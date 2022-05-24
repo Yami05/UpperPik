@@ -14,6 +14,8 @@ public class CharacterMovement : MonoBehaviour
   public  bool start;
     public GameObject bot;
     AI ai;
+
+   
     private void Start()
     {
         ai = bot.GetComponent<AI>();
@@ -21,6 +23,7 @@ public class CharacterMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         animator.SetBool("Idle", true);
         ai.enabled = false;
+        
     }
 
     private void FixedUpdate()
@@ -38,8 +41,11 @@ public class CharacterMovement : MonoBehaviour
     }
     private void Update()
     {
+        
         SwipeManager();
-        Movement();
+         Movement();
+        
+
     }
 
     private void SwipeManager()
@@ -65,9 +71,9 @@ public class CharacterMovement : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetMouseButton(0))
+       /* else if (Input.GetMouseButton(0))
         {
-            
+          
             if (Input.mousePosition.x < 0)
             {
                 rotation -= rotationSpeed * Time.deltaTime;
@@ -76,12 +82,13 @@ public class CharacterMovement : MonoBehaviour
             {
                 rotation += rotationSpeed * Time.deltaTime;
             }
-        }
+        }*/
     }
 
   
     public void Movement()
     {
+
         if (Input.GetMouseButton(0))
         {
             animator.SetBool("isMoving", true);

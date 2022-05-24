@@ -18,10 +18,10 @@ public class Detector : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    private void Update()
     {
 
-        if (stack._fuels.Count <= 2)
+        if (stack._fuels.Count <= 1)
         {
             rb.useGravity = true;
             animator.SetBool("Fly", false);
@@ -30,7 +30,7 @@ public class Detector : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag=="Border" && stack._fuels !=null )
+        if (other.gameObject.tag=="Border" )
         {
             rb.useGravity = false;
             animator.SetBool("Fly", true);
@@ -63,9 +63,9 @@ public class Detector : MonoBehaviour
         {
 
          
-            Destroy(stack._fuels[i].gameObject, 0.3f);
+            Destroy(stack._fuels[i].gameObject, 0.5f);
             stack._fuels.RemoveAt(i);
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.5f);
 
         }
       

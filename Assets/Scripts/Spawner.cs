@@ -20,16 +20,17 @@ public class Spawner : MonoBehaviour
 
      IEnumerator SpawnIt()
     {
-       
-     ;
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(Fuel, transform.position, Quaternion.identity);
 
-        yield return new WaitForSeconds(2f);
+        
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag=="Player")
         {
-            Instantiate(Fuel, transform.position, Quaternion.identity);
+            StartCoroutine(SpawnIt());
+
         }
             
         
